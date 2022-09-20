@@ -12,7 +12,7 @@ public class CountryInfo {
     private String name;
 
     @NotNull
-    @JsonProperty("continent")
+    @JsonProperty("population")
     private String population;
 
     @NotNull
