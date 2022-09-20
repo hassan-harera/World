@@ -18,6 +18,9 @@ public class Country {
     @Column(name = "code")
     private String code;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "population")
     private String population;
 
@@ -27,10 +30,6 @@ public class Country {
     @Column(name = "life_expectancy")
     private String lifeExpectancy;
 
-//    @JoinColumn(name = "country_code",
-//            referencedColumnName = "code",
-//            insertable = false,
-//            updatable = false)
     @OneToMany(mappedBy = "countryCode", fetch = FetchType.EAGER)
     private List<CountryLanguage> countryLanguages;
 }
