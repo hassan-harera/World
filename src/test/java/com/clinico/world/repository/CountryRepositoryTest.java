@@ -50,4 +50,14 @@ public class CountryRepositoryTest {
         Country country = page.get().findFirst().get();
         Assertions.assertThat(countryRepository.findById(country.getCode()).isPresent()).isTrue();
     }
+
+    @Test
+    public void getting_country_languages_by_mapping_existing_country_should_not_be_null() {
+        Page<Country> page = countryRepository.findAll(Pageable.ofSize(1).first());
+        Assertions.assertThat(page.isEmpty()).isFalse();
+
+        Country country = page.get().findFirst().get();
+        Assertions.assertThat(country.getCountryLanguages()).isNotNull();
+        Assertions.assertThat(country.getCountryLanguages().isEmpty()).isFalse();
+    }
 }
