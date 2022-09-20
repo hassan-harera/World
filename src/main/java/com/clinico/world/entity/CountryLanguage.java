@@ -24,4 +24,7 @@ public class CountryLanguage {
     @Id
     @Column(name = "language")
     private String language;
+
+    @Column(name = "percentage")
+    private Double percentage;
 }

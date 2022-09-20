@@ -1,8 +1,6 @@
 package com.clinico.world.repository;
 
-import com.clinico.world.entity.Country;
 import com.clinico.world.entity.CountryLanguage;
-import com.clinico.world.entity.pk.CountryLanguagePk;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 public class CountryLanguageRepositoryTest {
@@ -44,5 +41,14 @@ public class CountryLanguageRepositoryTest {
 
         CountryLanguage countryLanguage = page.get().findFirst().get();
         Assertions.assertThat(countryLanguageRepository.getCountryLanguages(countryLanguage.getCountryCode()).isEmpty()).isFalse();
+    }
+
+    @Test
+    public void test_percentage_field() {
+        Page<CountryLanguage> page = countryLanguageRepository.findAll(Pageable.ofSize(1).first());
+        Assertions.assertThat(page.isEmpty()).isFalse();
+
+        CountryLanguage countryLanguage = page.get().findFirst().get();
+        Assertions.assertThat(countryLanguage.getPercentage()).isNotNull();
     }
 }
